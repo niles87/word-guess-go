@@ -21,14 +21,6 @@ type Letter struct {
 	IsGuessed bool
 }
 
-type Word struct {
-	Word []Letter
-}
-
-type Player struct {
-	Guesses uint
-}
-
 func (letter *Letter) DisplayLetter() byte {
 	if letter.IsGuessed {
 		return letter.Letter
@@ -42,6 +34,10 @@ func (letter *Letter) UserGuess(char byte) bool {
 		return true
 	}
 	return false
+}
+
+type Word struct {
+	Word []Letter
 }
 
 func (word *Word) ToString() {
@@ -59,7 +55,11 @@ func (word *Word) CheckGuess(char byte) bool {
 	return guess
 }
 
-func (player *Player) RemoveGuess(guess byte, word Word) {
+type Player struct {
+	Guesses uint
+}
+
+func (player *Player) RemoveGuess(guess byte, word *Word) {
 	if !word.CheckGuess(guess) && player.Guesses > 1 {
 		player.Guesses -= 1
 	}
