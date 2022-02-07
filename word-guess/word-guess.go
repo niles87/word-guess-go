@@ -1,4 +1,4 @@
-package wordguessgo
+package wordguess
 
 import (
 	"fmt"
